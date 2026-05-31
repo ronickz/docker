@@ -3,19 +3,19 @@
 ## Instalacion
 
 ```bash
-# sudo apt install docker.io
+sudo apt install docker.io
 ```
 
 LInux tiene un comando `systemctl` que lo que hace es habilitar,deshabilitar,prender o apagar un servicio en segundo plano.
 
 ```bash
-# sudo systemctl enable --now docker
+sudo systemctl enable --now docker
 ```
 
 Forma de probar docker
 
 ```bash
-# sudo docker run hello-world
+sudo docker run hello-world
 ```
 
 ## Funcionamiento interno
@@ -37,7 +37,7 @@ ls -l /var/run/docker.sock
 En este archivo, solo tiene permisos root y el grupo `docker`
 
 ```bash
-# srw-rw---- 1 root docker ... /var/run/docker.sock
+srw-rw---- 1 root docker ... /var/run/docker.sock
 ```
 
 #### De donde sale el grupo docker?
@@ -45,7 +45,7 @@ En este archivo, solo tiene permisos root y el grupo `docker`
 Al instalar docker, **`se crea un grupo de usuarios`**
 
 ```bash
-cat /etc/groups | grep "docker"
+cat /etc/group | grep "docker"
 ```
 
 Entonces, para no hacer un sudo en cada consulta. Se agrega el usuario actual a ese grupo docker.
@@ -59,21 +59,57 @@ sudo usermod -aG docker $USER
 Son como una **`plantilla`**, solo esta guardada, no es algo en ejecucion.
 
 ```bash
-# docker images
+docker images
 ```
 
 ```bash
-# docker pull imagen:tag/version
+docker pull imagen:tag/version
 ```
 
 ```bash
-# docker image imagen:tag/version
+docker image imagen:tag/version
+```
+
+## Volumenes
+
+Para persistir datos aunque el contenedor se borre, Docker usa volúmenes administrados por el motor Docker.
+
+
+```bash
+docker volume create mongo_data
+```
+
+
+***Named Volume***: Docker administra donde guardarlo
+
+```bash
+-v mongo_data:/data/db
+```
+
+***Bind Mount***: Yo elijo el origen.
+
+```bash
+-v /home/eze/proyecto:/app
+```
+
+
+## Ejemplo con mongo
+
+```bash
+
+#Se lee, monta el volumen mongo_data en /data/db
+
+docker run -d \
+  --name mongo-dev-noauth \
+  -p 127.0.0.1:27017:27017 \
+  -v mongo_data:/data/db \
+  mongo:7
+
 ```
 
 ## Contenedores
 
 Un contenedor es una **`imagen ejecutandose`**.
-Se puede descargar una imagen y ejecutar un contenedor con `run`.
 
 >Crear un contenedor nuevo y arrancarlo.
 
@@ -92,23 +128,25 @@ Para ver **`TODOS los contenedores`**(en ejecucion y apagados)
 ```bash
 docker ps -a
 ```
-
-## Volumenes
-
-Para persistir los datos, se deben crear volumenes fisicos en el sistema.
+> Manejo de `instancias`
 
 ```bash
-#docker volume create mongo_data
+docker start
+docker stop
+docker restart
+docker rm
 ```
 
-## Ejemplo final con mongo
+Para ver `que sucede` dentro de un contenedor
 
 ```bash
-
-docker run -d \
-  --name mongo-dev-noauth \
-  -p 127.0.0.1:27017:27017 \
-  -v mongo_data_noauth:/data/db \
-  mongo:7
-
+docker logs mongo 2>&1 | lnav
 ```
+
+
+Para ingresar a un contenedor y ejecutar comandos.
+
+```bash
+docker exec -it mongo-eze bash
+```
+

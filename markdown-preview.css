@@ -1,0 +1,218 @@
+/* Aura Dark - Markdown Preview para VS Code */
+
+:root {
+  --aura-bg: #15141b;
+  --aura-bg-soft: #110f18;
+  --aura-panel: #121016;
+  --aura-panel-2: #2e2b38;
+  --aura-border: #3b334b;
+
+  --aura-text: #edecee;
+  --aura-text-soft: #cdccce;
+  --aura-muted: #6d6d6d;
+
+  --aura-purple: #a277ff;
+  --aura-green: #61ffca;
+  --aura-orange: #ffca85;
+  --aura-red: #ff6767;
+  --aura-pink: #f694ff;
+  --aura-blue: #82e2ff;
+
+  --aura-selection: #3d375e7f;
+}
+
+/* Fondo general */
+body {
+  background: var(--aura-bg);
+  color: var(--aura-text);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  line-height: 1.7;
+}
+
+/* Contenedor general */
+.vscode-body,
+.markdown-body {
+  background: var(--aura-bg);
+  color: var(--aura-text);
+}
+
+/* Títulos */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--aura-green);
+  border-bottom-color: var(--aura-border);
+}
+
+h1 {
+  color: var(--aura-purple);
+}
+
+h2 {
+  color: var(--aura-green);
+}
+
+h3 {
+  color: var(--aura-orange);
+}
+
+/* Texto fuerte y cursiva */
+strong {
+  color: var(--aura-orange);
+}
+
+em {
+  color: var(--aura-pink);
+}
+
+/* Links */
+a {
+  color: var(--aura-purple);
+}
+
+a:hover {
+  color: var(--aura-green);
+}
+
+/* Código inline */
+:not(pre) > code {
+  background: var(--aura-panel-2);
+  color: var(--aura-green);
+  border: 1px solid var(--aura-border);
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+/* Bloques de código */
+pre {
+  background: var(--aura-panel) !important;
+  border: 1px solid var(--aura-border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--aura-text);
+  font-family: "Fira Code", "JetBrains Mono", "Cascadia Code", monospace;
+  font-size: 14px;
+}
+
+/* Colores de syntax highlight */
+.hljs {
+  background: var(--aura-panel) !important;
+  color: var(--aura-text) !important;
+}
+
+.hljs-keyword,
+.hljs-built_in,
+.hljs-selector-tag,
+.hljs-literal {
+  color: var(--aura-purple) !important;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+  color: var(--aura-green) !important;
+}
+
+.hljs-title,
+.hljs-function,
+.hljs-section {
+  color: var(--aura-orange) !important;
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet {
+  color: var(--aura-orange) !important;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute,
+.hljs-attr {
+  color: var(--aura-pink) !important;
+}
+
+.hljs-type,
+.hljs-class,
+.hljs-name {
+  color: var(--aura-blue) !important;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--aura-muted) !important;
+  font-style: italic;
+}
+
+.hljs-deletion {
+  color: var(--aura-red) !important;
+}
+
+/* Bash / shell: comandos comunes */
+.language-bash .hljs-built_in,
+.language-sh .hljs-built_in,
+.language-shell .hljs-built_in {
+  color: var(--aura-green) !important;
+}
+
+.language-bash .hljs-keyword,
+.language-sh .hljs-keyword,
+.language-shell .hljs-keyword {
+  color: var(--aura-purple) !important;
+}
+
+.language-bash .hljs-string,
+.language-sh .hljs-string,
+.language-shell .hljs-string {
+  color: var(--aura-green) !important;
+}
+
+.language-bash .hljs-variable,
+.language-sh .hljs-variable,
+.language-shell .hljs-variable {
+  color: var(--aura-pink) !important;
+}
+
+/* Blockquotes */
+blockquote {
+  background: rgba(162, 119, 255, 0.08);
+  border-left: 4px solid var(--aura-purple);
+  color: var(--aura-text-soft);
+  padding: 10px 16px;
+  border-radius: 8px;
+}
+
+/* Tablas */
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background: var(--aura-panel-2);
+  color: var(--aura-green);
+}
+
+td,
+th {
+  border: 1px solid var(--aura-border);
+  padding: 8px 12px;
+}
+
+/* Líneas */
+hr {
+  border: 0;
+  border-top: 1px solid var(--aura-border);
+}
+
+/* Selección */
+::selection {
+  background: var(--aura-selection);
+}

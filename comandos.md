@@ -13,3 +13,8 @@ sudo systemctl start docker
 ```bash
 systemctl is-active docker
 ```
+
+**`EXTRA UTIL`**
+```bash
+sudo apt install lnav
+```
