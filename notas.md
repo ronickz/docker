@@ -172,6 +172,38 @@ docker network connect world-app 4051
 docker exec -it container /bin/sh
 ```
 
+## Docker Compose
+
+```bash
+version: '3'
+
+services: 
+  db:
+    container_name: postgres_database
+    image: postgres:15.1
+    volumes:
+      # - postgres-db:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=123456
+  pgAdmin:
+    container_name: pg_admin
+    depends_on:
+      - db
+    image: dpage/pgadmin4:6.17
+    ports:
+      - "8080:80"
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_PASSWORD=123456
+      - PGADMIN_DEFAULT_EMAIL=superman@google.com
+
+volumes:
+  postgres-db:
+    external: true
+```
+
 ## A INVESTIGAR
 Layers y reutilizacion
 
@@ -198,3 +230,7 @@ docker container run \
 phpmyadmin:5.2.0-apache
 
 phpmyadmin:5.2.0-apache
+
+
+
+
